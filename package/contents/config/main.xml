@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+
+  <group name="General">
+    <!-- "auto" or the <id> in power/<id>/chargeRate -->
+    <entry name="batteryId" type="String">
+      <default>auto</default>
+    </entry>
+    <!-- W; below is the low band -->
+    <entry name="normalLow" type="Double">
+      <default>6</default>
+      <min>0.1</min>
+      <max>500</max>
+    </entry>
+    <!-- W; above is the high band -->
+    <entry name="normalHigh" type="Double">
+      <default>12</default>
+      <min>0.2</min>
+      <max>500</max>
+    </entry>
+    <entry name="decimals" type="Int">
+      <default>1</default>
+      <min>0</min>
+      <max>2</max>
+    </entry>
+    <!-- 0 "2:45", 1 "2h 45m", 2 "2.8 h", 3 hidden -->
+    <entry name="timeFormat" type="Int">
+      <default>0</default>
+    </entry>
+    <!-- horizontal panels: 0 below the power draw, 1 next to it -->
+    <entry name="timePosition" type="Int">
+      <default>0</default>
+    </entry>
+    <!-- 0 hidden, 1 plug icon, 2 "AC" text -->
+    <entry name="pluggedInMode" type="Int">
+      <default>0</default>
+    </entry>
+  </group>
+
+  <group name="Appearance">
+    <entry name="lowColor" type="Color">
+      <default>#27ae60</default>
+    </entry>
+    <entry name="normalColor" type="Color">
+      <default>#3daee9</default>
+    </entry>
+    <entry name="highColor" type="Color">
+      <default>#da4453</default>
+    </entry>
+    <entry name="colorTextHigh" type="Bool">
+      <default>true</default>
+    </entry>
+    <!-- automatic is 1.5 × normalHigh -->
+    <entry name="barMaxAuto" type="Bool">
+      <default>true</default>
+    </entry>
+    <!-- W -->
+    <entry name="barMaxFixed" type="Double">
+      <default>20</default>
+      <min>1</min>
+      <max>500</max>
+    </entry>
+    <!-- 0 bar under text, 1 text right of bar, 2 text left of bar, 3 bar only, 4 text only -->
+    <entry name="textPosition" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="barLengthUnits" type="Int">
+      <default>4</default>
+      <min>1</min>
+      <max>20</max>
+    </entry>
+  </group>
+</kcfg>

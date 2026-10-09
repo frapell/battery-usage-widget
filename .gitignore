@@ -1,0 +1,4 @@
+dist/
+*.plasmoid
+*.qmlc
+package/contents/locale/

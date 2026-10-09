@@ -1,0 +1,20 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Franco Pellegrini"
+            }
+        ],
+        "BugReportUrl": "https://github.com/frapell/battery-usage-widget/issues",
+        "Category": "System Information",
+        "Description": "Battery power draw and remaining time at a glance",
+        "Icon": "battery-full",
+        "Id": "org.frapell.batteryusage",
+        "License": "GPL-2.0+",
+        "Name": "Battery Usage",
+        "Version": "0.1.0",
+        "Website": "https://github.com/frapell/battery-usage-widget"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

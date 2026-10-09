@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2026 Franco Pellegrini
+# SPDX-License-Identifier: GPL-2.0-or-later
+#
+# Pushing a vX.Y.Z tag builds the .plasmoid and publishes a GitHub release
+# with it attached. The tag must match KPlugin.Version in metadata.json.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check tag matches metadata.json
+        run: |
+          version=$(jq -r '.KPlugin.Version' package/metadata.json)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match KPlugin.Version $version in package/metadata.json"
+            exit 1
+          fi
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends gettext zip
+
+      - name: Build
+        run: make build
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/*.plasmoid \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes \
+            --verify-tag
